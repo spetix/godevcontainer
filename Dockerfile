@@ -3,8 +3,9 @@ FROM alpine:latest
 
 # Install make, git, curl, and bash
 RUN apk add --no-cache make git curl \
-    && wget https://go.dev/dl/go${VARIANT}.linux-amd64.tar.gz -O /tmp/go.tar.gz \
-    && tar -C /usr/local -xzf /tmp/go.tar.gz \
+    && curl -k -L https://go.dev/dl/go1.25.1.linux-amd64.tar.gz -o /tmp/go.tar.gz \
+    && ls -Fla /tmp \
+    && tar xvfz /tmp/go.tar.gz \
     && rm /tmp/go.tar.gz \
     && addgroup -S vscode && adduser -S vscode -G vscode
 
